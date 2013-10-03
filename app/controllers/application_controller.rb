@@ -175,6 +175,7 @@ class ApplicationController < ActionController::Base
     if User.current.logged?
       lang = find_language(User.current.language)
     end
+    lang ||= Setting.default_language
     if lang.nil? && request.env['HTTP_ACCEPT_LANGUAGE']
       accept_lang = parse_qvalues(request.env['HTTP_ACCEPT_LANGUAGE']).first
       if !accept_lang.blank?
@@ -182,7 +183,6 @@ class ApplicationController < ActionController::Base
         lang = find_language(accept_lang) || find_language(accept_lang.split('-').first)
       end
     end
-    lang ||= Setting.default_language
     set_language_if_valid(lang)
   end
 
