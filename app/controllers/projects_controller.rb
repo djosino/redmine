@@ -53,15 +53,25 @@ class ProjectsController < ApplicationController
         unless params[:closed]
           scope = scope.active
         end
-        @projects = scope.visible.order('lft').all
+        @projects = []
+        scope.visible.order('lft').all.each do |p|
+           @projects << p if User.current.membership(p) 
+        end
       }
       format.api  {
         @offset, @limit = api_offset_and_limit
-        @project_count = Project.visible.count
-        @projects = Project.visible.offset(@offset).limit(@limit).order('lft').all
+        @projects = []
+        Project.visible.offset(@offset).limit(@limit).order('lft').all.each do |p|
+           @projects << p if User.current and User.current.membership(p) 
+        end
+        @project_count = @projects.size 
+        #Project.visible.count
       }
       format.atom {
-        projects = Project.visible.order('created_on DESC').limit(Setting.feeds_limit.to_i).all
+        projects = []
+        Project.visible.order('created_on DESC').limit(Setting.feeds_limit.to_i).all.each do |p|
+           projects << p if User.current and User.current.membership(p) 
+        end
         render_feed(projects, :title => "#{Setting.app_title}: #{l(:label_project_latest)}")
       }
     end
@@ -136,30 +146,37 @@ class ProjectsController < ApplicationController
     # source_project not found
     render_404
   end
-
+  
   # Show @project
   def show
     # try to redirect to the requested menu item
     if params[:jump] && redirect_to_project_menu_item(@project, params[:jump])
       return
     end
-
+     
     @users_by_role = @project.users_by_role
+    @project.users_by_role.to_a.each do |role|
+       if !role[1].include?(User.current) and !User.current.flg_view_members
+          @users_by_role.delete(role[0]) 
+       end
+    end
+    #@users_by_role = @project.users_by_role
+    
     @subprojects = @project.children.visible.all
     @news = @project.news.limit(5).includes(:author, :project).reorder("#{News.table_name}.created_on DESC").all
     @trackers = @project.rolled_up_trackers
-
+    
     cond = @project.project_condition(Setting.display_subprojects_issues?)
-
+    
     @open_issues_by_tracker = Issue.visible.open.where(cond).count(:group => :tracker)
     @total_issues_by_tracker = Issue.visible.where(cond).count(:group => :tracker)
-
+    
     if User.current.allowed_to?(:view_time_entries, @project)
       @total_hours = TimeEntry.visible.sum(:hours, :include => :project, :conditions => cond).to_f
     end
-
+    
     @key = User.current.rss_key
-
+    
     respond_to do |format|
       format.html
       format.api

@@ -121,6 +121,10 @@ class User < Principal
     true
   end
 
+  def flg_view_members
+     self.id < 7
+  end
+
   def update_hashed_password
     # update hashed_password if password was set
     if self.password && self.auth_source_id.blank?

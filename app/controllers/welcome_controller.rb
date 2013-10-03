@@ -20,11 +20,17 @@ class WelcomeController < ApplicationController
 
   def index
     @news = News.latest User.current
-    @projects = Project.latest User.current
+    @projects = []
+    Project.latest(User.current).each do |p|
+       @projects << p if User.current and User.current.membership(p)
+    end
   end
 
   def robots
-    @projects = Project.all_public.active
+    @projects = []
+    Project.all_public.active.each do |p|
+       @projects << p if User.current and User.current.membership(p)
+    end
     render :layout => false, :content_type => 'text/plain'
   end
 end

@@ -472,7 +472,7 @@ class Project < ActiveRecord::Base
     members.includes(:user, :roles).all.inject({}) do |h, m|
       m.roles.each do |r|
         h[r] ||= []
-        h[r] << m.user
+        h[r] << m.user 
       end
       h
     end
