@@ -1,25 +1,29 @@
 @import url(../../../stylesheets/application.css);
+@import url(../../../stylesheets/font-awesome.min.css);
 
 body{ color:#303030; background:#e8eaec; }
 
-#top-menu { font-size: 80%; height: 2em; padding-top: 0.5em; background-color: #578bb8; }
-#top-menu a { font-weight: bold; }
-#header { background: #467aa7; height:5.8em; padding: 10px 0 0 0; }
+table.list td { height: 16px }
+.buttons a { font-family: Verdana }
+
+/*date picker */
+.ui-datepicker-week-col {
+    display: none;
+}
+/* fim */
+
+
+.list [class^="icon-"]:before, .list [class*=" icon-"]:before { content: '' !important; }
+#top-menu { font-size: 80%; height: 2em; padding-top: 0.5em; background:  linear-gradient(to bottom, #555 0%, #333 100%) repeat scroll 0 0 #444 }
+/*#top-menu a { font-weight: bold; }*/
+#header { background: linear-gradient(to bottom, #0077be 0%, #00539d 100%) repeat scroll 0 0 #00539d; height: auto; padding: 10px 0 0 0; }
 #header h1 { margin-left: 6px; }
 #quick-search { margin-right: 6px; }
-#main-menu { background-color: #578bb8; left: 0; border-top: 1px solid #fff; width: 100%; }
-#main-menu li { margin: 0; padding: 0; }
-#main-menu li a { background-color: #578bb8; border-right: 1px solid #fff; font-size: 90%; padding: 4px 8px 4px 8px; font-weight: bold; }
-#main-menu li a:hover { background-color: #80b0da; color: #ffffff; }
-#main-menu li a.selected, #main-menu li a.selected:hover { background-color: #80b0da; color: #ffffff; }
 
-#footer { background-color: #578bb8; border: 0; color: #fff;}
+#footer { background: #444;  border: 0; color: #fff;}
 #footer a { color: #fff; font-weight: bold; }
-
-#main { font:90% Verdana,Tahoma,Arial,sans-serif; background: #e8eaec; }
-#main a { font-weight: bold; color: #467aa7;}
-#main a:hover { color: #2a5a8a; text-decoration: underline; }
-#content { background: #fff; }
+#main { font:90% Verdana,Tahoma,Arial,sans-serif; }
+#main a { font-weight: bold }
 #content .tabs ul { bottom:-1px; }
 
 h2, h3, h4, .wiki h1, .wiki h2, .wiki h3 { border-bottom: 0px; color:#606060; font-family: Trebuchet MS,Georgia,"Times New Roman",serif; }
@@ -34,8 +38,58 @@ h4 { border-bottom: dotted 1px #c0c0c0; }
     padding-bottom: 3px;
 }
 
-#top-menu a.home { background-image: url(../images/home.png); }
-#top-menu a.my-page { background-image: url(../../../images/user.png); }
-#top-menu a.projects { background-image: url(../../../images/projects.png); }
+#top-menu a.home     { background-image: url(../images/home.png); }
+#top-menu a.my-page  { background-image: url(../images/user.png); }
+#top-menu a.projects { background-image: url(../images/projects.png); }
 #top-menu a.administration { background-image: url(../images/wrench.png); }
-#top-menu a.help { background-image: url(../../../images/help.png); }
+#top-menu a.help     { background-image: url(../images/help.png); }
+
+#top-menu ul li { padding-right: 10px;}
+
+/* minhas configurações */
+a { color: #0088CC; text-decoration: none;}
+a:hover, a:focus { color: #005580; text-decoration: underline; }
+a.brand          { color: #E9E9E9; font-size: 22px; margin-top: 1px; text-shadow: 0 1px 0 #000; font-weight: normal}
+a.brand strong   { opacity: 0.95;  font-weight: bold}
+
+#main-menu ul li a.selected, #main-menu ul li a.selected:hover { background: #f9f9f9;  text-shadow: 0 1px 0 #fff;  color: #00539d;}
+#main-menu ul li a:hover { color: #fff;}
+#main-menu { margin: -1px 0 0; height: 34px; padding: 0; padding-bottom: 10px; top: 10px; position: relative; width: 100%; left:0;}
+#main-menu ul { 
+    background: linear-gradient(to bottom, #0077be 0%, #00539d 100%) repeat scroll 0 0  #00539d ;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 0 0;
+    border-top: 1px solid #00539d;
+    clear: right;
+    float: left;
+    height: 33px;
+    margin: 0;
+    min-height: 33px;
+    padding: 0;
+    width: 100%;
+}
+#main-menu ul li {
+    color: #E9E9E9;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 11px;
+    font-weight: 600;
+    list-style-type: none;
+    min-width: 100px;
+    padding: 0;
+    text-align: center;
+    text-shadow: 0 1px 0 #000;
+    white-space: nowrap;
+    border-right: 1px solid #00539d; 
+}
+#main-menu li a {
+    color: #E9E9E9;
+    display: block;
+    height: 19px;
+    margin: 0;
+    padding: 9px 15px 5px 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+} 
+legend { background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CCCCCC; color: #484848; font-weight: bold; padding: 0 10px; }

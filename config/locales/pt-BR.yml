@@ -276,7 +276,7 @@ pt-BR:
   field_start_page: Página inicial
   field_subproject: Sub-projeto
   field_hours: Horas
-  field_activity: Atividade
+  field_activity: Atividades
   field_spent_on: Data
   field_identifier: Identificador
   field_is_filter: É um filtro
@@ -401,7 +401,7 @@ pt-BR:
   label_assigned_to_me_issues: Minhas tarefas
   label_last_login: Última conexão
   label_registered_on: Registrado em
-  label_activity: Atividade
+  label_activity: Atividades
   label_overall_activity: Atividades gerais
   label_new: Novo
   label_logged_as: "Acessando como:"
@@ -439,7 +439,7 @@ pt-BR:
   label_news_view_all: Ver todas as notícias
   label_news_added: Notícia adicionada
   label_settings: Configurações
-  label_overview: Visão geral
+  label_overview: Principal
   label_version: Versão
   label_version_new: Nova versão
   label_version_plural: Versões
@@ -658,8 +658,8 @@ pt-BR:
   button_change: Alterar
   button_apply: Aplicar
   button_clear: Limpar
-  button_lock: Bloquear
-  button_unlock: Desbloquear
+  button_lock: ' Bloquear'
+  button_unlock: ' Desbloquear'
   button_download: Baixar
   button_list: Listar
   button_view: Ver
